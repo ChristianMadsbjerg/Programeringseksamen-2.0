@@ -1,6 +1,6 @@
    //har flyttet den herop så den indkapsler det hele
    document.addEventListener("DOMContentLoaded", () => {
-//hej med deg dfss
+
     function setFormMessage(formElement, type, message) {
         //Her finder jeg det andet element i loginformen
         const messageElement = formElement.querySelector(".form__message"); 
