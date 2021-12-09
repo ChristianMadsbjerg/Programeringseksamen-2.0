@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Product</title>
+</head>
+<body>
+    <h1>Create new Project</h1>
+  
+    Go to main page here <a href="http://127.0.0.1:5500/Public/Front_page/frontpage.html">here</a>
+    <br><br>
+    Product name: <br>
+    <input name="title" id="title" style="width: 150px;" placeholder="Product name"/>
+    <br /><br />
+    Product description: <br>
+    <input name="description" id="description" style="width: 150px;" placeholder="Short description"/><br /><br />
+    Product price: <br>
+    <input name="price" id="price" style="width: 150px;" placeholder="price"/><br /><br />
+
+    Product category: <br>
+    <select id="category">
+        <option>Fishing equipment</option>
+        <option>Garden tools</option>
+        <option>Kitchen equipment</option>
+        <option>Snowboard equipment</option>
+        <option>Clothes</option>
+    </select>
+    <br /><br/>
+    <script>
+        function NewProductData() {
+//Her henter jeg titlen input feltet der har id'et"title"
+         var title = document.getElementById('title').value;
+//Her henter jeg description fra det andet input felt med id'et ="description"
+         var description = document.getElementById('description').value;
+//Her har jeg hentet price fra det tidligere input felt med id'et
+        var price = document.getElementById('price').value;
+//Her har jeg igen hentet en fra tidligere input, denne gang er det category med id'et="category"
+         var category = document.getElementById('category').value;
+//Her laver jeg en ny request
+        var product = {
+            title: title, 
+            description:description,
+            price:price,
+            category:category
+        }  
+
+
+            fetch('http://localhost:5800/create_product', {
+                method: "POST",
+                headers: {
+                    "Content-Type":"application/json"
+                },
+                body: JSON.stringify(product)
+            }).then(response => response.json())
+            .then(data => {
+                console.log(product)
+                localStorage.setItem("NewProductData")  
+            })
+            .catch((error) => {
+            })
+        }
+        </script>
+    <button onclick="NewProductData()">
+        Create Product
+    </button>
+   
+        
